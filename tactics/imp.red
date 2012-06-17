@@ -6,4 +6,10 @@
 ;strategy Submitted: @date@
 ;assert CORESIZE==8000
 
-mov 0, 1
+
+	org main	;; variant 1
+
+
+;; variant 1 
+;; basic imp
+main:	mov 0, 1
