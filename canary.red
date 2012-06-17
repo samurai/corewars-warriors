@@ -18,19 +18,11 @@
 ;assert CORESIZE==8000
 
 	org main
-
-
-; stop attacks?
-;planc:		sne -1, -4
-;		mov reset2, -5
-;		jmp planc
-
 ; config-y stuff
 increment:	dat #0, #3		; right now 3 seems to be the magic number for 8000 memsize
 					; the bomber will kill this after a bit if it's still running					
 					; so this is a backup that will expire if we get to make a fair number of runs
-
-; needed vars?
+; needed vars?	;; TODO: some of these counters could be reduced
 done:		dat #0, #50		; stores the number of bombs we should drop
 reset2:		dat #0, #0		; used to 0 out bombcount
 reset:		dat #0, #500		; used to reset lastbomb 
@@ -74,11 +66,5 @@ foundit:	mov imp, @scancount
 ; in thinking about this, this pretty much ensures that in (memsize * processes)-start postition, we will overwrite ourself..
 ; see note on increment declaration
 imp:		mov 0, 1		; imp?
-planb:		mov reset, 150 		; just incase someone hits the core bot early on, spin a cheap backup option
-		mov imp, 150	
-		jmp 149
-
-
-;		add #16, #16  		;; fwiw, this actually works stashing the value in .B, which would be mroe space effective 
-;						coutner than above
-
+planb:		mov imp, 3550		; back-up
+		jmp 3549
